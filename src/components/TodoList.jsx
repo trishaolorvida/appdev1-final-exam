@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-// TODO: Import TodoForm component
-
-import { useTodos } from "../context/TodoContext";
+import TodoForm from "./TodoForm"; 
+import { useTodos } from "../context/TodoContext"; 
 
 const TodoList = () => {
   const { todos, loading, toggleComplete, deleteTodo, addTodo } = useTodos();
@@ -11,22 +10,17 @@ const TodoList = () => {
 
   return (
     <div>
-      {/* 
-        TODO: Render TodoForm with the required props (addTodo, newTodo, setNewTodo)
-      */}
-
+      <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} addTodo={addTodo} />
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            {/* 
-              TODO: Apply conditional styling for completed todos (e.g., strikethrough)
-            */}
-
-            {/* TODO: Make the todo title clickable to toggle its completion status */}
-            <span>{todo.title}</span>
-
-            {/* TODO: Implement a delete button to remove a todo */}
-            <button>Delete</button>
+            <span
+              onClick={() => toggleComplete(todo.id)}
+              style={{ textDecoration: todo.completed ? "line-through" : "none", cursor: "pointer" }}
+            >
+              {todo.title}
+            </span>
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>

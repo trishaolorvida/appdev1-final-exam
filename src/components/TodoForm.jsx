@@ -1,7 +1,6 @@
 import React from "react";
 
-// TODO: Identify the missing parameters required in TodoForm
-const TodoForm = ({}) => {
+const TodoForm = ({ newTodo, setNewTodo, addTodo }) => {
   return (
     <div>
       <input
@@ -12,8 +11,8 @@ const TodoForm = ({}) => {
       />
       <button
         onClick={() => {
-          // TODO: Add the new todo when the button is clicked
-          // TODO: Clear the input field after adding the todo
+          addTodo(newTodo); 
+          setNewTodo(''); 
         }}
       >
         Add Todo
